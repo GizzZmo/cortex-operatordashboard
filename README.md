@@ -88,6 +88,11 @@ Protokollene som bruker KI (Rafael, Metatron osv.) krever både gyldig nøkkel o
 - API-nøkler lagres også lokalt og brukes bare når du aktivt kjører en KI-protokoll.
 - Du kan eksportere eller slette databasen når som helst.
 
+## Dokumentasjon
+
+- [API-dokumentasjon](docs/API.md) – server-funksjoner, lokal lagring og visjons-API
+- [Lisens](LICENSE)
+
 ## Utvikling
 
 | Kommando              | Beskrivelse                          |
