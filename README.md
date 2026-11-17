@@ -24,7 +24,13 @@ Samme flate på smal skjerm.
 
 ![Mobil](docs/screenshots/mobile.png)
 
+## Kom i gang
+
 ```bash
 npm install
 npm run dev
 ```
+
+## Lisens
+
+Dette prosjektet er lisensiert under [MIT License](LICENSE).
