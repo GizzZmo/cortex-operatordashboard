@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #07090d;
+  --color-surface: #10161c;
+  --color-fg: #d7efe8;
+  --color-muted: #7f9c96;
+  --color-primary: #00e6b8;
+  --color-accent: #e040fb;
+  --color-danger: #ff4d4d;
+  --color-warn: #f0c14a;
+  --color-ok: #3dff9a;
+  --color-border: #1c3a34;
+  --font-sans: "Share Tech Mono", ui-monospace, monospace;
+  --font-mono: "Share Tech Mono", ui-monospace, monospace;
+  --radius-sm: 2px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) transparent;
+  }
+}
+
+.panel {
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+.video-frame::before,
+.video-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-color: var(--color-primary);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.video-frame::before {
+  top: 0.5rem;
+  left: 0.5rem;
+  border-width: 2px 0 0 2px;
+}
+
+.video-frame::after {
+  right: 0.5rem;
+  bottom: 0.5rem;
+  border-width: 0 2px 2px 0;
+}
+
+.scanlines {
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    color-mix(in srgb, var(--color-bg) 35%, transparent) 4px
+  );
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  animation: spin 0.9s linear infinite;
+}
+
+.pulse-led {
+  animation: led 1.6s ease-in-out infinite;
+}
+
+input.tolerance {
+  appearance: none;
+  height: 2.75rem;
+  background: transparent;
+}
+
+input.tolerance::-webkit-slider-runnable-track {
+  height: 0.25rem;
+  background: var(--color-border);
+}
+
+input.tolerance::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -0.5rem;
+  background: var(--color-primary);
+}
+
+input.tolerance::-moz-range-track {
+  height: 0.25rem;
+  background: var(--color-border);
+}
+
+input.tolerance::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 0;
+  background: var(--color-primary);
+}
+
+.log-system {
+  border-left: 2px solid var(--color-primary);
+  color: color-mix(in srgb, var(--color-primary) 82%, var(--color-fg));
+}
+
+.log-anomaly {
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.log-known {
+  border-left: 2px solid var(--color-ok);
+  color: var(--color-ok);
+}
+
+.log-audio {
+  border-left: 2px solid var(--color-warn);
+  color: var(--color-warn);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes led {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
